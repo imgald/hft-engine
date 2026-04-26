@@ -209,6 +209,30 @@ test_matching_engine.cpp.s:
 	cd /home/imglad1991/hft/build/Release && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/hft_tests.dir/build.make tests/CMakeFiles/hft_tests.dir/test_matching_engine.cpp.s
 .PHONY : test_matching_engine.cpp.s
 
+test_object_pool.o: test_object_pool.cpp.o
+.PHONY : test_object_pool.o
+
+# target to build an object file
+test_object_pool.cpp.o:
+	cd /home/imglad1991/hft/build/Release && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/hft_tests.dir/build.make tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o
+.PHONY : test_object_pool.cpp.o
+
+test_object_pool.i: test_object_pool.cpp.i
+.PHONY : test_object_pool.i
+
+# target to preprocess a source file
+test_object_pool.cpp.i:
+	cd /home/imglad1991/hft/build/Release && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/hft_tests.dir/build.make tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.i
+.PHONY : test_object_pool.cpp.i
+
+test_object_pool.s: test_object_pool.cpp.s
+.PHONY : test_object_pool.s
+
+# target to generate assembly for a file
+test_object_pool.cpp.s:
+	cd /home/imglad1991/hft/build/Release && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/hft_tests.dir/build.make tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.s
+.PHONY : test_object_pool.cpp.s
+
 test_order.o: test_order.cpp.o
 .PHONY : test_order.o
 
@@ -322,6 +346,9 @@ help:
 	@echo "... test_matching_engine.o"
 	@echo "... test_matching_engine.i"
 	@echo "... test_matching_engine.s"
+	@echo "... test_object_pool.o"
+	@echo "... test_object_pool.i"
+	@echo "... test_object_pool.s"
 	@echo "... test_order.o"
 	@echo "... test_order.i"
 	@echo "... test_order.s"

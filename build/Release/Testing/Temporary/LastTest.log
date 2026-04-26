@@ -1,10 +1,253 @@
-Start testing: Apr 26 12:30 EDT
+Start testing: Apr 26 17:26 EDT
 ----------------------------------------------------------
-1/54 Testing: MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook
-1/54 Test: MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook
+1/63 Testing: ObjectPoolTest.InitialState
+1/63 Test: ObjectPoolTest.InitialState
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.InitialState" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.InitialState" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.InitialState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.InitialState
+[       OK ] ObjectPoolTest.InitialState (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.InitialState" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.InitialState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/63 Testing: ObjectPoolTest.Allocate_ReturnsNonNull
+2/63 Test: ObjectPoolTest.Allocate_ReturnsNonNull
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.Allocate_ReturnsNonNull" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.Allocate_ReturnsNonNull" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.Allocate_ReturnsNonNull
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.Allocate_ReturnsNonNull
+[       OK ] ObjectPoolTest.Allocate_ReturnsNonNull (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.Allocate_ReturnsNonNull" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.Allocate_ReturnsNonNull" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/63 Testing: ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr
+3/63 Test: ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr
+[       OK ] ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.Allocate_ExhaustsPool_ReturnsNullptr" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/63 Testing: ObjectPoolTest.Free_RestoresAvailability
+4/63 Test: ObjectPoolTest.Free_RestoresAvailability
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.Free_RestoresAvailability" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.Free_RestoresAvailability" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.Free_RestoresAvailability
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.Free_RestoresAvailability
+[       OK ] ObjectPoolTest.Free_RestoresAvailability (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.Free_RestoresAvailability" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.Free_RestoresAvailability" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/63 Testing: ObjectPoolTest.AllocateFree_Cycle
+5/63 Test: ObjectPoolTest.AllocateFree_Cycle
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.AllocateFree_Cycle" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.AllocateFree_Cycle" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.AllocateFree_Cycle
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.AllocateFree_Cycle
+[       OK ] ObjectPoolTest.AllocateFree_Cycle (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.AllocateFree_Cycle" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.AllocateFree_Cycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/63 Testing: ObjectPoolTest.Make_ConstructsObject
+6/63 Test: ObjectPoolTest.Make_ConstructsObject
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.Make_ConstructsObject" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.Make_ConstructsObject" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.Make_ConstructsObject
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.Make_ConstructsObject
+[       OK ] ObjectPoolTest.Make_ConstructsObject (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.Make_ConstructsObject" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.Make_ConstructsObject" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/63 Testing: ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers
+7/63 Test: ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers
+[       OK ] ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.Owns_CorrectlyIdentifiesPoolPointers" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/63 Testing: ObjectPoolTest.Reuse_SlotDataIsOverwritten
+8/63 Test: ObjectPoolTest.Reuse_SlotDataIsOverwritten
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.Reuse_SlotDataIsOverwritten" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.Reuse_SlotDataIsOverwritten" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.Reuse_SlotDataIsOverwritten
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.Reuse_SlotDataIsOverwritten
+[       OK ] ObjectPoolTest.Reuse_SlotDataIsOverwritten (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.Reuse_SlotDataIsOverwritten" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.Reuse_SlotDataIsOverwritten" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/63 Testing: ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned
+9/63 Test: ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned
+Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned" "--gtest_also_run_disabled_tests"
+Directory: /home/imglad1991/hft/build/Release/tests
+"ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned" start time: Apr 26 17:26 EDT
+Output:
+----------------------------------------------------------
+Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned
+[       OK ] ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned" end time: Apr 26 17:26 EDT
+"ObjectPoolTest.FullCycle_AllSlotsUsedAndReturned" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/63 Testing: MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook
+10/63 Test: MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -23,15 +266,15 @@ Note: Google Test filter = MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.LimitBuy_NoAsk_RestsOnBook" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/54 Testing: MatchingEngineTest.LimitSell_NoBid_RestsOnBook
-2/54 Test: MatchingEngineTest.LimitSell_NoBid_RestsOnBook
+11/63 Testing: MatchingEngineTest.LimitSell_NoBid_RestsOnBook
+11/63 Test: MatchingEngineTest.LimitSell_NoBid_RestsOnBook
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.LimitSell_NoBid_RestsOnBook" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.LimitSell_NoBid_RestsOnBook" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.LimitSell_NoBid_RestsOnBook" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -50,15 +293,15 @@ Note: Google Test filter = MatchingEngineTest.LimitSell_NoBid_RestsOnBook
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.LimitSell_NoBid_RestsOnBook" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.LimitSell_NoBid_RestsOnBook" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.LimitSell_NoBid_RestsOnBook" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/54 Testing: MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook
-3/54 Test: MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook
+12/63 Testing: MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook
+12/63 Test: MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -77,15 +320,15 @@ Note: Google Test filter = MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.LimitBuy_BelowAsk_RestsOnBook" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/54 Testing: MatchingEngineTest.FullFill_ExactQty
-4/54 Test: MatchingEngineTest.FullFill_ExactQty
+13/63 Testing: MatchingEngineTest.FullFill_ExactQty
+13/63 Test: MatchingEngineTest.FullFill_ExactQty
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.FullFill_ExactQty" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.FullFill_ExactQty" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.FullFill_ExactQty" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -104,15 +347,15 @@ Note: Google Test filter = MatchingEngineTest.FullFill_ExactQty
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.FullFill_ExactQty" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.FullFill_ExactQty" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.FullFill_ExactQty" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-5/54 Testing: MatchingEngineTest.FullFill_ExecutionAtPassivePrice
-5/54 Test: MatchingEngineTest.FullFill_ExecutionAtPassivePrice
+14/63 Testing: MatchingEngineTest.FullFill_ExecutionAtPassivePrice
+14/63 Test: MatchingEngineTest.FullFill_ExecutionAtPassivePrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.FullFill_ExecutionAtPassivePrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.FullFill_ExecutionAtPassivePrice" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.FullFill_ExecutionAtPassivePrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -131,15 +374,15 @@ Note: Google Test filter = MatchingEngineTest.FullFill_ExecutionAtPassivePrice
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.FullFill_ExecutionAtPassivePrice" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.FullFill_ExecutionAtPassivePrice" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.FullFill_ExecutionAtPassivePrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-6/54 Testing: MatchingEngineTest.PartialFill_AggressorLarger
-6/54 Test: MatchingEngineTest.PartialFill_AggressorLarger
+15/63 Testing: MatchingEngineTest.PartialFill_AggressorLarger
+15/63 Test: MatchingEngineTest.PartialFill_AggressorLarger
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.PartialFill_AggressorLarger" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.PartialFill_AggressorLarger" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.PartialFill_AggressorLarger" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -158,15 +401,15 @@ Note: Google Test filter = MatchingEngineTest.PartialFill_AggressorLarger
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.PartialFill_AggressorLarger" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.PartialFill_AggressorLarger" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.PartialFill_AggressorLarger" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-7/54 Testing: MatchingEngineTest.PartialFill_PassiveLarger
-7/54 Test: MatchingEngineTest.PartialFill_PassiveLarger
+16/63 Testing: MatchingEngineTest.PartialFill_PassiveLarger
+16/63 Test: MatchingEngineTest.PartialFill_PassiveLarger
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.PartialFill_PassiveLarger" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.PartialFill_PassiveLarger" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.PartialFill_PassiveLarger" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -185,15 +428,15 @@ Note: Google Test filter = MatchingEngineTest.PartialFill_PassiveLarger
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.PartialFill_PassiveLarger" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.PartialFill_PassiveLarger" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.PartialFill_PassiveLarger" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-8/54 Testing: MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks
-8/54 Test: MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks
+17/63 Testing: MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks
+17/63 Test: MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -212,15 +455,15 @@ Note: Google Test filter = MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.MultiLevel_BuySweeepsMultipleAsks" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-9/54 Testing: MatchingEngineTest.FIFO_OlderOrderFilledFirst
-9/54 Test: MatchingEngineTest.FIFO_OlderOrderFilledFirst
+18/63 Testing: MatchingEngineTest.FIFO_OlderOrderFilledFirst
+18/63 Test: MatchingEngineTest.FIFO_OlderOrderFilledFirst
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.FIFO_OlderOrderFilledFirst" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.FIFO_OlderOrderFilledFirst" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.FIFO_OlderOrderFilledFirst" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -239,15 +482,15 @@ Note: Google Test filter = MatchingEngineTest.FIFO_OlderOrderFilledFirst
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.FIFO_OlderOrderFilledFirst" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.FIFO_OlderOrderFilledFirst" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.FIFO_OlderOrderFilledFirst" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-10/54 Testing: MatchingEngineTest.MarketBuy_FillsAtAnyPrice
-10/54 Test: MatchingEngineTest.MarketBuy_FillsAtAnyPrice
+19/63 Testing: MatchingEngineTest.MarketBuy_FillsAtAnyPrice
+19/63 Test: MatchingEngineTest.MarketBuy_FillsAtAnyPrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.MarketBuy_FillsAtAnyPrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.MarketBuy_FillsAtAnyPrice" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.MarketBuy_FillsAtAnyPrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -266,15 +509,15 @@ Note: Google Test filter = MatchingEngineTest.MarketBuy_FillsAtAnyPrice
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.MarketBuy_FillsAtAnyPrice" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.MarketBuy_FillsAtAnyPrice" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.MarketBuy_FillsAtAnyPrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-11/54 Testing: MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled
-11/54 Test: MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled
+20/63 Testing: MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled
+20/63 Test: MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -293,15 +536,15 @@ Note: Google Test filter = MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.MarketOrder_NoLiquidity_Cancelled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-12/54 Testing: MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled
-12/54 Test: MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled
+21/63 Testing: MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled
+21/63 Test: MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -320,15 +563,15 @@ Note: Google Test filter = MatchingEngineTest.MarketOrder_PartialFill_RemainderC
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.MarketOrder_PartialFill_RemainderCancelled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-13/54 Testing: MatchingEngineTest.IOC_FullFill
-13/54 Test: MatchingEngineTest.IOC_FullFill
+22/63 Testing: MatchingEngineTest.IOC_FullFill
+22/63 Test: MatchingEngineTest.IOC_FullFill
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.IOC_FullFill" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.IOC_FullFill" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.IOC_FullFill" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -347,15 +590,15 @@ Note: Google Test filter = MatchingEngineTest.IOC_FullFill
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.IOC_FullFill" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.IOC_FullFill" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.IOC_FullFill" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-14/54 Testing: MatchingEngineTest.IOC_PartialFill_RemainderCancelled
-14/54 Test: MatchingEngineTest.IOC_PartialFill_RemainderCancelled
+23/63 Testing: MatchingEngineTest.IOC_PartialFill_RemainderCancelled
+23/63 Test: MatchingEngineTest.IOC_PartialFill_RemainderCancelled
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.IOC_PartialFill_RemainderCancelled" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.IOC_PartialFill_RemainderCancelled" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.IOC_PartialFill_RemainderCancelled" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -374,15 +617,15 @@ Note: Google Test filter = MatchingEngineTest.IOC_PartialFill_RemainderCancelled
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.IOC_PartialFill_RemainderCancelled" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.IOC_PartialFill_RemainderCancelled" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.IOC_PartialFill_RemainderCancelled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-15/54 Testing: MatchingEngineTest.IOC_NoMatch_Cancelled
-15/54 Test: MatchingEngineTest.IOC_NoMatch_Cancelled
+24/63 Testing: MatchingEngineTest.IOC_NoMatch_Cancelled
+24/63 Test: MatchingEngineTest.IOC_NoMatch_Cancelled
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.IOC_NoMatch_Cancelled" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.IOC_NoMatch_Cancelled" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.IOC_NoMatch_Cancelled" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -401,15 +644,15 @@ Note: Google Test filter = MatchingEngineTest.IOC_NoMatch_Cancelled
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.IOC_NoMatch_Cancelled" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.IOC_NoMatch_Cancelled" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.IOC_NoMatch_Cancelled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-16/54 Testing: MatchingEngineTest.Cancel_RestingOrder
-16/54 Test: MatchingEngineTest.Cancel_RestingOrder
+25/63 Testing: MatchingEngineTest.Cancel_RestingOrder
+25/63 Test: MatchingEngineTest.Cancel_RestingOrder
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.Cancel_RestingOrder" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.Cancel_RestingOrder" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.Cancel_RestingOrder" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -428,15 +671,15 @@ Note: Google Test filter = MatchingEngineTest.Cancel_RestingOrder
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.Cancel_RestingOrder" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.Cancel_RestingOrder" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.Cancel_RestingOrder" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-17/54 Testing: MatchingEngineTest.Trade_FieldsCorrect
-17/54 Test: MatchingEngineTest.Trade_FieldsCorrect
+26/63 Testing: MatchingEngineTest.Trade_FieldsCorrect
+26/63 Test: MatchingEngineTest.Trade_FieldsCorrect
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.Trade_FieldsCorrect" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.Trade_FieldsCorrect" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.Trade_FieldsCorrect" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -455,15 +698,15 @@ Note: Google Test filter = MatchingEngineTest.Trade_FieldsCorrect
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.Trade_FieldsCorrect" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.Trade_FieldsCorrect" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.Trade_FieldsCorrect" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-18/54 Testing: MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades
-18/54 Test: MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades
+27/63 Testing: MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades
+27/63 Test: MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades" start time: Apr 26 12:30 EDT
+"MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -482,15 +725,15 @@ Note: Google Test filter = MatchingEngineTest.TotalVolume_AccumulatesAcrossTrade
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades" end time: Apr 26 12:30 EDT
+"MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades" end time: Apr 26 17:26 EDT
 "MatchingEngineTest.TotalVolume_AccumulatesAcrossTrades" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-19/54 Testing: OrderBookTest.EmptyBook_NoBestBidOrAsk
-19/54 Test: OrderBookTest.EmptyBook_NoBestBidOrAsk
+28/63 Testing: OrderBookTest.EmptyBook_NoBestBidOrAsk
+28/63 Test: OrderBookTest.EmptyBook_NoBestBidOrAsk
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.EmptyBook_NoBestBidOrAsk" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.EmptyBook_NoBestBidOrAsk" start time: Apr 26 12:30 EDT
+"OrderBookTest.EmptyBook_NoBestBidOrAsk" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -509,15 +752,15 @@ Note: Google Test filter = OrderBookTest.EmptyBook_NoBestBidOrAsk
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.EmptyBook_NoBestBidOrAsk" end time: Apr 26 12:30 EDT
+"OrderBookTest.EmptyBook_NoBestBidOrAsk" end time: Apr 26 17:26 EDT
 "OrderBookTest.EmptyBook_NoBestBidOrAsk" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-20/54 Testing: OrderBookTest.BestBid_IsHighestBidPrice
-20/54 Test: OrderBookTest.BestBid_IsHighestBidPrice
+29/63 Testing: OrderBookTest.BestBid_IsHighestBidPrice
+29/63 Test: OrderBookTest.BestBid_IsHighestBidPrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.BestBid_IsHighestBidPrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.BestBid_IsHighestBidPrice" start time: Apr 26 12:30 EDT
+"OrderBookTest.BestBid_IsHighestBidPrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -536,15 +779,15 @@ Note: Google Test filter = OrderBookTest.BestBid_IsHighestBidPrice
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.BestBid_IsHighestBidPrice" end time: Apr 26 12:30 EDT
+"OrderBookTest.BestBid_IsHighestBidPrice" end time: Apr 26 17:26 EDT
 "OrderBookTest.BestBid_IsHighestBidPrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-21/54 Testing: OrderBookTest.BestAsk_IsLowestAskPrice
-21/54 Test: OrderBookTest.BestAsk_IsLowestAskPrice
+30/63 Testing: OrderBookTest.BestAsk_IsLowestAskPrice
+30/63 Test: OrderBookTest.BestAsk_IsLowestAskPrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.BestAsk_IsLowestAskPrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.BestAsk_IsLowestAskPrice" start time: Apr 26 12:30 EDT
+"OrderBookTest.BestAsk_IsLowestAskPrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -563,15 +806,15 @@ Note: Google Test filter = OrderBookTest.BestAsk_IsLowestAskPrice
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.BestAsk_IsLowestAskPrice" end time: Apr 26 12:30 EDT
+"OrderBookTest.BestAsk_IsLowestAskPrice" end time: Apr 26 17:26 EDT
 "OrderBookTest.BestAsk_IsLowestAskPrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-22/54 Testing: OrderBookTest.Spread_BidAskDifference
-22/54 Test: OrderBookTest.Spread_BidAskDifference
+31/63 Testing: OrderBookTest.Spread_BidAskDifference
+31/63 Test: OrderBookTest.Spread_BidAskDifference
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.Spread_BidAskDifference" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.Spread_BidAskDifference" start time: Apr 26 12:30 EDT
+"OrderBookTest.Spread_BidAskDifference" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -590,15 +833,15 @@ Note: Google Test filter = OrderBookTest.Spread_BidAskDifference
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.Spread_BidAskDifference" end time: Apr 26 12:30 EDT
+"OrderBookTest.Spread_BidAskDifference" end time: Apr 26 17:26 EDT
 "OrderBookTest.Spread_BidAskDifference" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-23/54 Testing: OrderBookTest.Cancel_RemovesOrder
-23/54 Test: OrderBookTest.Cancel_RemovesOrder
+32/63 Testing: OrderBookTest.Cancel_RemovesOrder
+32/63 Test: OrderBookTest.Cancel_RemovesOrder
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.Cancel_RemovesOrder" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.Cancel_RemovesOrder" start time: Apr 26 12:30 EDT
+"OrderBookTest.Cancel_RemovesOrder" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -617,15 +860,15 @@ Note: Google Test filter = OrderBookTest.Cancel_RemovesOrder
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.Cancel_RemovesOrder" end time: Apr 26 12:30 EDT
+"OrderBookTest.Cancel_RemovesOrder" end time: Apr 26 17:26 EDT
 "OrderBookTest.Cancel_RemovesOrder" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-24/54 Testing: OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel
-24/54 Test: OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel
+33/63 Testing: OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel
+33/63 Test: OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel" start time: Apr 26 12:30 EDT
+"OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -644,15 +887,15 @@ Note: Google Test filter = OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel" end time: Apr 26 12:30 EDT
+"OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel" end time: Apr 26 17:26 EDT
 "OrderBookTest.Cancel_LastOrderAtPrice_RemovesLevel" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-25/54 Testing: OrderBookTest.Cancel_NonExistent_ReturnsFalse
-25/54 Test: OrderBookTest.Cancel_NonExistent_ReturnsFalse
+34/63 Testing: OrderBookTest.Cancel_NonExistent_ReturnsFalse
+34/63 Test: OrderBookTest.Cancel_NonExistent_ReturnsFalse
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.Cancel_NonExistent_ReturnsFalse" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.Cancel_NonExistent_ReturnsFalse" start time: Apr 26 12:30 EDT
+"OrderBookTest.Cancel_NonExistent_ReturnsFalse" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -671,15 +914,15 @@ Note: Google Test filter = OrderBookTest.Cancel_NonExistent_ReturnsFalse
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.Cancel_NonExistent_ReturnsFalse" end time: Apr 26 12:30 EDT
+"OrderBookTest.Cancel_NonExistent_ReturnsFalse" end time: Apr 26 17:26 EDT
 "OrderBookTest.Cancel_NonExistent_ReturnsFalse" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-26/54 Testing: OrderBookTest.BidLevels_OrderedHighToLow
-26/54 Test: OrderBookTest.BidLevels_OrderedHighToLow
+35/63 Testing: OrderBookTest.BidLevels_OrderedHighToLow
+35/63 Test: OrderBookTest.BidLevels_OrderedHighToLow
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.BidLevels_OrderedHighToLow" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.BidLevels_OrderedHighToLow" start time: Apr 26 12:30 EDT
+"OrderBookTest.BidLevels_OrderedHighToLow" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -698,15 +941,15 @@ Note: Google Test filter = OrderBookTest.BidLevels_OrderedHighToLow
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.BidLevels_OrderedHighToLow" end time: Apr 26 12:30 EDT
+"OrderBookTest.BidLevels_OrderedHighToLow" end time: Apr 26 17:26 EDT
 "OrderBookTest.BidLevels_OrderedHighToLow" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-27/54 Testing: OrderBookTest.AskLevels_OrderedLowToHigh
-27/54 Test: OrderBookTest.AskLevels_OrderedLowToHigh
+36/63 Testing: OrderBookTest.AskLevels_OrderedLowToHigh
+36/63 Test: OrderBookTest.AskLevels_OrderedLowToHigh
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.AskLevels_OrderedLowToHigh" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.AskLevels_OrderedLowToHigh" start time: Apr 26 12:30 EDT
+"OrderBookTest.AskLevels_OrderedLowToHigh" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -725,15 +968,15 @@ Note: Google Test filter = OrderBookTest.AskLevels_OrderedLowToHigh
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.AskLevels_OrderedLowToHigh" end time: Apr 26 12:30 EDT
+"OrderBookTest.AskLevels_OrderedLowToHigh" end time: Apr 26 17:26 EDT
 "OrderBookTest.AskLevels_OrderedLowToHigh" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-28/54 Testing: OrderBookTest.DepthSnapshot_RespectsNLimit
-28/54 Test: OrderBookTest.DepthSnapshot_RespectsNLimit
+37/63 Testing: OrderBookTest.DepthSnapshot_RespectsNLimit
+37/63 Test: OrderBookTest.DepthSnapshot_RespectsNLimit
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.DepthSnapshot_RespectsNLimit" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.DepthSnapshot_RespectsNLimit" start time: Apr 26 12:30 EDT
+"OrderBookTest.DepthSnapshot_RespectsNLimit" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -752,15 +995,15 @@ Note: Google Test filter = OrderBookTest.DepthSnapshot_RespectsNLimit
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.DepthSnapshot_RespectsNLimit" end time: Apr 26 12:30 EDT
+"OrderBookTest.DepthSnapshot_RespectsNLimit" end time: Apr 26 17:26 EDT
 "OrderBookTest.DepthSnapshot_RespectsNLimit" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-29/54 Testing: OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice
-29/54 Test: OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice
+38/63 Testing: OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice
+38/63 Test: OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice" start time: Apr 26 12:30 EDT
+"OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -779,15 +1022,15 @@ Note: Google Test filter = OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePri
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice" end time: Apr 26 12:30 EDT
+"OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice" end time: Apr 26 17:26 EDT
 "OrderBookTest.QtyAt_AggregatesMultipleOrdersAtSamePrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-30/54 Testing: PriceLevelTest.EmptyOnConstruction
-30/54 Test: PriceLevelTest.EmptyOnConstruction
+39/63 Testing: PriceLevelTest.EmptyOnConstruction
+39/63 Test: PriceLevelTest.EmptyOnConstruction
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.EmptyOnConstruction" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.EmptyOnConstruction" start time: Apr 26 12:30 EDT
+"PriceLevelTest.EmptyOnConstruction" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -806,15 +1049,15 @@ Note: Google Test filter = PriceLevelTest.EmptyOnConstruction
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.EmptyOnConstruction" end time: Apr 26 12:30 EDT
+"PriceLevelTest.EmptyOnConstruction" end time: Apr 26 17:26 EDT
 "PriceLevelTest.EmptyOnConstruction" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-31/54 Testing: PriceLevelTest.AddSingleOrder
-31/54 Test: PriceLevelTest.AddSingleOrder
+40/63 Testing: PriceLevelTest.AddSingleOrder
+40/63 Test: PriceLevelTest.AddSingleOrder
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.AddSingleOrder" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.AddSingleOrder" start time: Apr 26 12:30 EDT
+"PriceLevelTest.AddSingleOrder" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -833,15 +1076,15 @@ Note: Google Test filter = PriceLevelTest.AddSingleOrder
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.AddSingleOrder" end time: Apr 26 12:30 EDT
+"PriceLevelTest.AddSingleOrder" end time: Apr 26 17:26 EDT
 "PriceLevelTest.AddSingleOrder" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-32/54 Testing: PriceLevelTest.FIFOOrder_FrontIsOldest
-32/54 Test: PriceLevelTest.FIFOOrder_FrontIsOldest
+41/63 Testing: PriceLevelTest.FIFOOrder_FrontIsOldest
+41/63 Test: PriceLevelTest.FIFOOrder_FrontIsOldest
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.FIFOOrder_FrontIsOldest" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.FIFOOrder_FrontIsOldest" start time: Apr 26 12:30 EDT
+"PriceLevelTest.FIFOOrder_FrontIsOldest" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -860,15 +1103,15 @@ Note: Google Test filter = PriceLevelTest.FIFOOrder_FrontIsOldest
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.FIFOOrder_FrontIsOldest" end time: Apr 26 12:30 EDT
+"PriceLevelTest.FIFOOrder_FrontIsOldest" end time: Apr 26 17:26 EDT
 "PriceLevelTest.FIFOOrder_FrontIsOldest" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-33/54 Testing: PriceLevelTest.ReduceFront_PartialFill
-33/54 Test: PriceLevelTest.ReduceFront_PartialFill
+42/63 Testing: PriceLevelTest.ReduceFront_PartialFill
+42/63 Test: PriceLevelTest.ReduceFront_PartialFill
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.ReduceFront_PartialFill" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.ReduceFront_PartialFill" start time: Apr 26 12:30 EDT
+"PriceLevelTest.ReduceFront_PartialFill" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -887,15 +1130,15 @@ Note: Google Test filter = PriceLevelTest.ReduceFront_PartialFill
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.ReduceFront_PartialFill" end time: Apr 26 12:30 EDT
+"PriceLevelTest.ReduceFront_PartialFill" end time: Apr 26 17:26 EDT
 "PriceLevelTest.ReduceFront_PartialFill" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-34/54 Testing: PriceLevelTest.ReduceFront_FullFill_RemovesOrder
-34/54 Test: PriceLevelTest.ReduceFront_FullFill_RemovesOrder
+43/63 Testing: PriceLevelTest.ReduceFront_FullFill_RemovesOrder
+43/63 Test: PriceLevelTest.ReduceFront_FullFill_RemovesOrder
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.ReduceFront_FullFill_RemovesOrder" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.ReduceFront_FullFill_RemovesOrder" start time: Apr 26 12:30 EDT
+"PriceLevelTest.ReduceFront_FullFill_RemovesOrder" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -914,15 +1157,15 @@ Note: Google Test filter = PriceLevelTest.ReduceFront_FullFill_RemovesOrder
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.ReduceFront_FullFill_RemovesOrder" end time: Apr 26 12:30 EDT
+"PriceLevelTest.ReduceFront_FullFill_RemovesOrder" end time: Apr 26 17:26 EDT
 "PriceLevelTest.ReduceFront_FullFill_RemovesOrder" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-35/54 Testing: PriceLevelTest.Cancel_MiddleOrder
-35/54 Test: PriceLevelTest.Cancel_MiddleOrder
+44/63 Testing: PriceLevelTest.Cancel_MiddleOrder
+44/63 Test: PriceLevelTest.Cancel_MiddleOrder
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.Cancel_MiddleOrder" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.Cancel_MiddleOrder" start time: Apr 26 12:30 EDT
+"PriceLevelTest.Cancel_MiddleOrder" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -941,15 +1184,15 @@ Note: Google Test filter = PriceLevelTest.Cancel_MiddleOrder
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.Cancel_MiddleOrder" end time: Apr 26 12:30 EDT
+"PriceLevelTest.Cancel_MiddleOrder" end time: Apr 26 17:26 EDT
 "PriceLevelTest.Cancel_MiddleOrder" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-36/54 Testing: PriceLevelTest.Cancel_NonExistentId_ReturnsFalse
-36/54 Test: PriceLevelTest.Cancel_NonExistentId_ReturnsFalse
+45/63 Testing: PriceLevelTest.Cancel_NonExistentId_ReturnsFalse
+45/63 Test: PriceLevelTest.Cancel_NonExistentId_ReturnsFalse
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.Cancel_NonExistentId_ReturnsFalse" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.Cancel_NonExistentId_ReturnsFalse" start time: Apr 26 12:30 EDT
+"PriceLevelTest.Cancel_NonExistentId_ReturnsFalse" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -968,15 +1211,15 @@ Note: Google Test filter = PriceLevelTest.Cancel_NonExistentId_ReturnsFalse
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.Cancel_NonExistentId_ReturnsFalse" end time: Apr 26 12:30 EDT
+"PriceLevelTest.Cancel_NonExistentId_ReturnsFalse" end time: Apr 26 17:26 EDT
 "PriceLevelTest.Cancel_NonExistentId_ReturnsFalse" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-37/54 Testing: PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty
-37/54 Test: PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty
+46/63 Testing: PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty
+46/63 Test: PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty" start time: Apr 26 12:30 EDT
+"PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -995,15 +1238,15 @@ Note: Google Test filter = PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty" end time: Apr 26 12:30 EDT
+"PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty" end time: Apr 26 17:26 EDT
 "PriceLevelTest.Cancel_LastOrder_LevelBecomesEmpty" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-38/54 Testing: PriceLevelTest.Contains_AfterAddAndRemove
-38/54 Test: PriceLevelTest.Contains_AfterAddAndRemove
+47/63 Testing: PriceLevelTest.Contains_AfterAddAndRemove
+47/63 Test: PriceLevelTest.Contains_AfterAddAndRemove
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceLevelTest.Contains_AfterAddAndRemove" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceLevelTest.Contains_AfterAddAndRemove" start time: Apr 26 12:30 EDT
+"PriceLevelTest.Contains_AfterAddAndRemove" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1022,15 +1265,15 @@ Note: Google Test filter = PriceLevelTest.Contains_AfterAddAndRemove
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceLevelTest.Contains_AfterAddAndRemove" end time: Apr 26 12:30 EDT
+"PriceLevelTest.Contains_AfterAddAndRemove" end time: Apr 26 17:26 EDT
 "PriceLevelTest.Contains_AfterAddAndRemove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-39/54 Testing: OrderTest.SizeIs128Bytes
-39/54 Test: OrderTest.SizeIs128Bytes
+48/63 Testing: OrderTest.SizeIs128Bytes
+48/63 Test: OrderTest.SizeIs128Bytes
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.SizeIs128Bytes" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.SizeIs128Bytes" start time: Apr 26 12:30 EDT
+"OrderTest.SizeIs128Bytes" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1049,15 +1292,15 @@ Note: Google Test filter = OrderTest.SizeIs128Bytes
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.SizeIs128Bytes" end time: Apr 26 12:30 EDT
+"OrderTest.SizeIs128Bytes" end time: Apr 26 17:26 EDT
 "OrderTest.SizeIs128Bytes" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-40/54 Testing: OrderTest.AlignedTo64Bytes
-40/54 Test: OrderTest.AlignedTo64Bytes
+49/63 Testing: OrderTest.AlignedTo64Bytes
+49/63 Test: OrderTest.AlignedTo64Bytes
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.AlignedTo64Bytes" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.AlignedTo64Bytes" start time: Apr 26 12:30 EDT
+"OrderTest.AlignedTo64Bytes" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1076,15 +1319,15 @@ Note: Google Test filter = OrderTest.AlignedTo64Bytes
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.AlignedTo64Bytes" end time: Apr 26 12:30 EDT
+"OrderTest.AlignedTo64Bytes" end time: Apr 26 17:26 EDT
 "OrderTest.AlignedTo64Bytes" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-41/54 Testing: OrderTest.HotFieldsInFirstCacheLine
-41/54 Test: OrderTest.HotFieldsInFirstCacheLine
+50/63 Testing: OrderTest.HotFieldsInFirstCacheLine
+50/63 Test: OrderTest.HotFieldsInFirstCacheLine
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.HotFieldsInFirstCacheLine" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.HotFieldsInFirstCacheLine" start time: Apr 26 12:30 EDT
+"OrderTest.HotFieldsInFirstCacheLine" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1103,15 +1346,15 @@ Note: Google Test filter = OrderTest.HotFieldsInFirstCacheLine
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.HotFieldsInFirstCacheLine" end time: Apr 26 12:30 EDT
+"OrderTest.HotFieldsInFirstCacheLine" end time: Apr 26 17:26 EDT
 "OrderTest.HotFieldsInFirstCacheLine" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-42/54 Testing: OrderTest.MakeLimit_FieldsCorrect
-42/54 Test: OrderTest.MakeLimit_FieldsCorrect
+51/63 Testing: OrderTest.MakeLimit_FieldsCorrect
+51/63 Test: OrderTest.MakeLimit_FieldsCorrect
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.MakeLimit_FieldsCorrect" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.MakeLimit_FieldsCorrect" start time: Apr 26 12:30 EDT
+"OrderTest.MakeLimit_FieldsCorrect" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1130,15 +1373,15 @@ Note: Google Test filter = OrderTest.MakeLimit_FieldsCorrect
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.MakeLimit_FieldsCorrect" end time: Apr 26 12:30 EDT
+"OrderTest.MakeLimit_FieldsCorrect" end time: Apr 26 17:26 EDT
 "OrderTest.MakeLimit_FieldsCorrect" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-43/54 Testing: OrderTest.MakeMarket_BuySentinelPrice
-43/54 Test: OrderTest.MakeMarket_BuySentinelPrice
+52/63 Testing: OrderTest.MakeMarket_BuySentinelPrice
+52/63 Test: OrderTest.MakeMarket_BuySentinelPrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.MakeMarket_BuySentinelPrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.MakeMarket_BuySentinelPrice" start time: Apr 26 12:30 EDT
+"OrderTest.MakeMarket_BuySentinelPrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1157,15 +1400,15 @@ Note: Google Test filter = OrderTest.MakeMarket_BuySentinelPrice
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.MakeMarket_BuySentinelPrice" end time: Apr 26 12:30 EDT
+"OrderTest.MakeMarket_BuySentinelPrice" end time: Apr 26 17:26 EDT
 "OrderTest.MakeMarket_BuySentinelPrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-44/54 Testing: OrderTest.MakeMarket_SellSentinelPrice
-44/54 Test: OrderTest.MakeMarket_SellSentinelPrice
+53/63 Testing: OrderTest.MakeMarket_SellSentinelPrice
+53/63 Test: OrderTest.MakeMarket_SellSentinelPrice
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.MakeMarket_SellSentinelPrice" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.MakeMarket_SellSentinelPrice" start time: Apr 26 12:30 EDT
+"OrderTest.MakeMarket_SellSentinelPrice" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1184,15 +1427,15 @@ Note: Google Test filter = OrderTest.MakeMarket_SellSentinelPrice
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.MakeMarket_SellSentinelPrice" end time: Apr 26 12:30 EDT
+"OrderTest.MakeMarket_SellSentinelPrice" end time: Apr 26 17:26 EDT
 "OrderTest.MakeMarket_SellSentinelPrice" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-45/54 Testing: OrderTest.MakeIOC_TypeIsIOC
-45/54 Test: OrderTest.MakeIOC_TypeIsIOC
+54/63 Testing: OrderTest.MakeIOC_TypeIsIOC
+54/63 Test: OrderTest.MakeIOC_TypeIsIOC
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.MakeIOC_TypeIsIOC" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.MakeIOC_TypeIsIOC" start time: Apr 26 12:30 EDT
+"OrderTest.MakeIOC_TypeIsIOC" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1211,15 +1454,15 @@ Note: Google Test filter = OrderTest.MakeIOC_TypeIsIOC
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.MakeIOC_TypeIsIOC" end time: Apr 26 12:30 EDT
+"OrderTest.MakeIOC_TypeIsIOC" end time: Apr 26 17:26 EDT
 "OrderTest.MakeIOC_TypeIsIOC" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-46/54 Testing: OrderTest.IsFilled_WhenRemainingIsZero
-46/54 Test: OrderTest.IsFilled_WhenRemainingIsZero
+55/63 Testing: OrderTest.IsFilled_WhenRemainingIsZero
+55/63 Test: OrderTest.IsFilled_WhenRemainingIsZero
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.IsFilled_WhenRemainingIsZero" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.IsFilled_WhenRemainingIsZero" start time: Apr 26 12:30 EDT
+"OrderTest.IsFilled_WhenRemainingIsZero" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1238,15 +1481,15 @@ Note: Google Test filter = OrderTest.IsFilled_WhenRemainingIsZero
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.IsFilled_WhenRemainingIsZero" end time: Apr 26 12:30 EDT
+"OrderTest.IsFilled_WhenRemainingIsZero" end time: Apr 26 17:26 EDT
 "OrderTest.IsFilled_WhenRemainingIsZero" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-47/54 Testing: OrderTest.IsActive_NewAndPartiallyFilled
-47/54 Test: OrderTest.IsActive_NewAndPartiallyFilled
+56/63 Testing: OrderTest.IsActive_NewAndPartiallyFilled
+56/63 Test: OrderTest.IsActive_NewAndPartiallyFilled
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTest.IsActive_NewAndPartiallyFilled" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTest.IsActive_NewAndPartiallyFilled" start time: Apr 26 12:30 EDT
+"OrderTest.IsActive_NewAndPartiallyFilled" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1265,15 +1508,15 @@ Note: Google Test filter = OrderTest.IsActive_NewAndPartiallyFilled
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTest.IsActive_NewAndPartiallyFilled" end time: Apr 26 12:30 EDT
+"OrderTest.IsActive_NewAndPartiallyFilled" end time: Apr 26 17:26 EDT
 "OrderTest.IsActive_NewAndPartiallyFilled" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-48/54 Testing: PriceTest.ToPrice_BasicConversion
-48/54 Test: PriceTest.ToPrice_BasicConversion
+57/63 Testing: PriceTest.ToPrice_BasicConversion
+57/63 Test: PriceTest.ToPrice_BasicConversion
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceTest.ToPrice_BasicConversion" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceTest.ToPrice_BasicConversion" start time: Apr 26 12:30 EDT
+"PriceTest.ToPrice_BasicConversion" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1292,15 +1535,15 @@ Note: Google Test filter = PriceTest.ToPrice_BasicConversion
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceTest.ToPrice_BasicConversion" end time: Apr 26 12:30 EDT
+"PriceTest.ToPrice_BasicConversion" end time: Apr 26 17:26 EDT
 "PriceTest.ToPrice_BasicConversion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-49/54 Testing: PriceTest.FromPrice_BasicConversion
-49/54 Test: PriceTest.FromPrice_BasicConversion
+58/63 Testing: PriceTest.FromPrice_BasicConversion
+58/63 Test: PriceTest.FromPrice_BasicConversion
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceTest.FromPrice_BasicConversion" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceTest.FromPrice_BasicConversion" start time: Apr 26 12:30 EDT
+"PriceTest.FromPrice_BasicConversion" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1319,15 +1562,15 @@ Note: Google Test filter = PriceTest.FromPrice_BasicConversion
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceTest.FromPrice_BasicConversion" end time: Apr 26 12:30 EDT
+"PriceTest.FromPrice_BasicConversion" end time: Apr 26 17:26 EDT
 "PriceTest.FromPrice_BasicConversion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-50/54 Testing: PriceTest.RoundTrip
-50/54 Test: PriceTest.RoundTrip
+59/63 Testing: PriceTest.RoundTrip
+59/63 Test: PriceTest.RoundTrip
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceTest.RoundTrip" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceTest.RoundTrip" start time: Apr 26 12:30 EDT
+"PriceTest.RoundTrip" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1346,15 +1589,15 @@ Note: Google Test filter = PriceTest.RoundTrip
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceTest.RoundTrip" end time: Apr 26 12:30 EDT
+"PriceTest.RoundTrip" end time: Apr 26 17:26 EDT
 "PriceTest.RoundTrip" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-51/54 Testing: PriceTest.IntegerArithmetic_NoFloatError
-51/54 Test: PriceTest.IntegerArithmetic_NoFloatError
+60/63 Testing: PriceTest.IntegerArithmetic_NoFloatError
+60/63 Test: PriceTest.IntegerArithmetic_NoFloatError
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=PriceTest.IntegerArithmetic_NoFloatError" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"PriceTest.IntegerArithmetic_NoFloatError" start time: Apr 26 12:30 EDT
+"PriceTest.IntegerArithmetic_NoFloatError" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1373,15 +1616,15 @@ Note: Google Test filter = PriceTest.IntegerArithmetic_NoFloatError
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"PriceTest.IntegerArithmetic_NoFloatError" end time: Apr 26 12:30 EDT
+"PriceTest.IntegerArithmetic_NoFloatError" end time: Apr 26 17:26 EDT
 "PriceTest.IntegerArithmetic_NoFloatError" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-52/54 Testing: SideTest.Opposite
-52/54 Test: SideTest.Opposite
+61/63 Testing: SideTest.Opposite
+61/63 Test: SideTest.Opposite
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=SideTest.Opposite" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"SideTest.Opposite" start time: Apr 26 12:30 EDT
+"SideTest.Opposite" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1400,15 +1643,15 @@ Note: Google Test filter = SideTest.Opposite
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"SideTest.Opposite" end time: Apr 26 12:30 EDT
+"SideTest.Opposite" end time: Apr 26 17:26 EDT
 "SideTest.Opposite" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-53/54 Testing: SideTest.ToString
-53/54 Test: SideTest.ToString
+62/63 Testing: SideTest.ToString
+62/63 Test: SideTest.ToString
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=SideTest.ToString" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"SideTest.ToString" start time: Apr 26 12:30 EDT
+"SideTest.ToString" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1427,15 +1670,15 @@ Note: Google Test filter = SideTest.ToString
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"SideTest.ToString" end time: Apr 26 12:30 EDT
+"SideTest.ToString" end time: Apr 26 17:26 EDT
 "SideTest.ToString" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-54/54 Testing: OrderTypeTest.ToString
-54/54 Test: OrderTypeTest.ToString
+63/63 Testing: OrderTypeTest.ToString
+63/63 Test: OrderTypeTest.ToString
 Command: "/home/imglad1991/hft/build/Release/bin/hft_tests" "--gtest_filter=OrderTypeTest.ToString" "--gtest_also_run_disabled_tests"
 Directory: /home/imglad1991/hft/build/Release/tests
-"OrderTypeTest.ToString" start time: Apr 26 12:30 EDT
+"OrderTypeTest.ToString" start time: Apr 26 17:26 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -1454,8 +1697,8 @@ Note: Google Test filter = OrderTypeTest.ToString
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"OrderTypeTest.ToString" end time: Apr 26 12:30 EDT
+"OrderTypeTest.ToString" end time: Apr 26 17:26 EDT
 "OrderTypeTest.ToString" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 26 12:30 EDT
+End testing: Apr 26 17:26 EDT

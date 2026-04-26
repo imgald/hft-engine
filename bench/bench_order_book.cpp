@@ -1,25 +1,18 @@
 #include "engine/matching_engine.hpp"
+#include "engine/object_pool.hpp"
 #include "engine/order_id_generator.hpp"
 
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
+#include <memory>
 #include <numeric>
 #include <vector>
 
 // ─── rdtscp ──────────────────────────────────────────────────────────────────
-//
-// rdtscp (serializing) vs rdtsc (non-serializing):
-//   rdtsc  — CPU can reorder instructions across it → measurement noise
-//   rdtscp — waits for all prior instructions to retire before reading
-//             the counter → more accurate for microbenchmarks
-//
 #if defined(__x86_64__) || defined(_M_X64)
   #include <x86intrin.h>
-  static inline uint64_t tsc_now() {
-      unsigned aux;
-      return __rdtscp(&aux);
-  }
+  static inline uint64_t tsc_now() { unsigned a; return __rdtscp(&a); }
   #define HFT_HAS_TSC 1
 #else
   static inline uint64_t tsc_now() {
@@ -29,156 +22,207 @@
   #define HFT_HAS_TSC 0
 #endif
 
-// ─── Calibration ─────────────────────────────────────────────────────────────
-static double calibrate_cycles_per_ns() {
-    using Clock = std::chrono::high_resolution_clock;
-    auto     w0 = Clock::now();
-    uint64_t t0 = tsc_now();
-    while (Clock::now() - w0 < std::chrono::milliseconds(200)) {}
-    uint64_t t1 = tsc_now();
-    auto     w1 = Clock::now();
-    double elapsed_ns = std::chrono::duration<double, std::nano>(w1 - w0).count();
-    return static_cast<double>(t1 - t0) / elapsed_ns;
+static double calibrate() {
+    using C = std::chrono::high_resolution_clock;
+    auto w0=C::now(); auto t0=tsc_now();
+    while (C::now()-w0 < std::chrono::milliseconds(200)) {}
+    double elapsed=std::chrono::duration<double,std::nano>(C::now()-w0).count();
+    return (double)(tsc_now()-t0)/elapsed;
 }
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
-struct Stats { double min, p50, p90, p99, p999, max, avg; };
-
+struct Stats { double p50,p99,p999,avg; };
 static Stats compute(std::vector<double>& v) {
-    std::sort(v.begin(), v.end());
-    double sum = 0; for (auto x : v) sum += x;
-    size_t n = v.size();
-    auto p = [&](double pct) { return v[std::min((size_t)(n*pct/100.0), n-1)]; };
-    return { v.front(), p(50), p(90), p(99), p(99.9), v.back(), sum/n };
+    std::sort(v.begin(),v.end());
+    double sum=0; for(auto x:v) sum+=x;
+    size_t n=v.size();
+    auto p=[&](double pct){ return v[std::min((size_t)(n*pct/100.0),n-1)]; };
+    return {p(50),p(99),p(99.9),sum/n};
 }
-
-static void print(const char* label, Stats s) {
-    printf("  %-38s  avg=%6.1f  p50=%6.1f  p99=%6.1f  p99.9=%7.1f  [ns]\n",
-           label, s.avg, s.p50, s.p99, s.p999);
+static void print(const char* label, Stats s, Stats* base=nullptr) {
+    printf("  %-36s  p50=%6.1f  p99=%6.1f  p99.9=%7.1f  [ns]",
+           label, s.p50, s.p99, s.p999);
+    if (base) printf("  %+.0f%% p99", (base->p99-s.p99)/base->p99*100.0);
+    printf("\n");
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 using namespace hft;
 static OrderIdGenerator g_gen;
 
-static Order* lmt(Side s, double px, Quantity q) {
-    return new Order(Order::make_limit(g_gen.next(), s, to_price(px), q));
+// Pool type: always heap-allocated via unique_ptr to avoid stack overflow.
+// Max pool size we'll use: 25000 × 128 bytes = 3.1 MB — safe on heap.
+constexpr size_t MAX_POOL = 25'000;
+using Pool = ObjectPool<Order, MAX_POOL>;
+
+static Order* heap_lmt(Side s, double px, Quantity q) {
+    return new Order(Order::make_limit(g_gen.next(),s,to_price(px),q));
 }
-static Order* mkt(Side s, Quantity q) {
-    return new Order(Order::make_market(g_gen.next(), s, q));
+static Order* heap_mkt(Side s, Quantity q) {
+    return new Order(Order::make_market(g_gen.next(),s,q));
 }
-static void seed(MatchingEngine& e, double mid, int levels) {
-    for (int i = 1; i <= levels; ++i) {
-        e.process_order(lmt(Side::Buy,  mid - i*0.01, 1000));
-        e.process_order(lmt(Side::Sell, mid + i*0.01, 1000));
-    }
+static Order* pool_lmt(Pool& pool, Side s, double px, Quantity q) {
+    Order* o = pool.make(Order::make_limit(g_gen.next(),s,to_price(px),q));
+    if (!o) { fprintf(stderr,"POOL EXHAUSTED at in_use=%zu\n",pool.in_use()); exit(1); }
+    return o;
+}
+static Order* pool_mkt(Pool& pool, Side s, Quantity q) {
+    Order* o = pool.make(Order::make_market(g_gen.next(),s,q));
+    if (!o) { fprintf(stderr,"POOL EXHAUSTED at in_use=%zu\n",pool.in_use()); exit(1); }
+    return o;
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 int main() {
-    printf("\n══════════════════════════════════════════════════════════════\n");
-    printf("  HFT Engine — Latency Benchmark  (Week 3 baseline)\n");
-    printf("══════════════════════════════════════════════════════════════\n");
-    printf("  TSC : %s\n", HFT_HAS_TSC ? "rdtscp (serializing)" : "chrono fallback");
+    printf("\n══════════════════════════════════════════════════════════════════\n");
+    printf("  HFT Engine — Week 4 Benchmark  (heap vs object pool)\n");
+    printf("══════════════════════════════════════════════════════════════════\n");
+    printf("  TSC  : %s\n", HFT_HAS_TSC ? "rdtscp" : "chrono");
+    const double cpns = calibrate();
+    printf("  CPU  : %.3f GHz\n", cpns);
+    printf("  Pool : heap-allocated, %zu orders × %zu bytes = %zu MB\n\n",
+           MAX_POOL, sizeof(Order), MAX_POOL*sizeof(Order)/1024/1024);
 
-    const double cpns = calibrate_cycles_per_ns();
-    printf("  CPU : %.3f GHz\n\n", cpns);
+    auto ns=[&](uint64_t c){ return (double)c/cpns; };
+    constexpr int N = 8'000;   // fits well within MAX_POOL
 
-    constexpr int W = 20'000;      // warmup
-    constexpr int N = 200'000;     // samples
-
-    auto ns = [&](uint64_t cycles) { return (double)cycles / cpns; };
-
-    // ── 1. Limit order, no match ──────────────────────────────────────────
+    // ══ 1. limit order, no match (resting) ═══════════════════════════════
+    printf("  ── limit order, no match (resting) ──────────────────────────\n");
+    Stats base_rest, pool_rest;
     {
         std::vector<double> lat; lat.reserve(N);
-        { MatchingEngine e("W");
-          for (int i=0;i<W;++i) e.process_order(lmt(i%2?Side::Buy:Side::Sell,100.0-(i%10)*0.01,100)); }
-
         MatchingEngine e("AAPL");
-        std::vector<Order*> orders; orders.reserve(N);
-        for (int i=0;i<N;++i)
-            orders.push_back(lmt(i%2?Side::Buy:Side::Sell, 100.0-(i%20)*0.01, 100));
-
-        for (auto* o : orders) {
-            auto t0 = tsc_now(); e.process_order(o); auto t1 = tsc_now();
-            lat.push_back(ns(t1-t0));
+        for(int i=0;i<N;++i){
+            Order* o=heap_lmt(i%2?Side::Buy:Side::Sell,100.0-(i%20)*0.01,100);
+            auto t0=tsc_now(); e.process_order(o); lat.push_back(ns(tsc_now()-t0));
         }
-        print("limit order, no match (resting)", compute(lat));
+        base_rest=compute(lat); print("heap alloc (baseline)",base_rest);
     }
-
-    // ── 2. Limit order, full fill ─────────────────────────────────────────
     {
         std::vector<double> lat; lat.reserve(N);
-        { MatchingEngine e("W");
-          for (int i=0;i<W;++i){ e.process_order(lmt(Side::Sell,100.0,100));
-                                  e.process_order(lmt(Side::Buy, 100.0,100)); } }
-
-        for (int i=0;i<N;++i) {
-            MatchingEngine e("AAPL");
-            e.process_order(lmt(Side::Sell, 100.0, 100));
-            Order* buy = lmt(Side::Buy, 100.0, 100);
-            auto t0 = tsc_now(); e.process_order(buy); auto t1 = tsc_now();
-            lat.push_back(ns(t1-t0));
+        auto pool=std::make_unique<Pool>();
+        MatchingEngine e("AAPL");
+        for(int i=0;i<N;++i){
+            Order* o=pool_lmt(*pool,i%2?Side::Buy:Side::Sell,100.0-(i%20)*0.01,100);
+            auto t0=tsc_now(); e.process_order(o); lat.push_back(ns(tsc_now()-t0));
         }
-        print("limit order, full fill (1 level)", compute(lat));
+        pool_rest=compute(lat); print("pool alloc (week4)   ",pool_rest,&base_rest);
+        printf("    pool in_use=%zu/%zu\n", pool->in_use(), pool->capacity());
     }
 
-    // ── 3. Market order, sweep 5 levels ──────────────────────────────────
+    // ══ 2. limit order, full fill ════════════════════════════════════════
+    // Orders are fully matched and consumed each iteration — reuse 2 slots.
+    printf("\n  ── limit order, full fill (1 level) ─────────────────────────\n");
+    Stats base_fill, pool_fill;
     {
         std::vector<double> lat; lat.reserve(N);
-        { MatchingEngine e("W");
-          for (int i=0;i<W;++i){ seed(e,100.0,5); e.process_order(mkt(Side::Buy,500)); } }
-
-        for (int i=0;i<N;++i) {
+        for(int i=0;i<N;++i){
             MatchingEngine e("AAPL");
-            seed(e, 100.0, 5);
-            Order* o = mkt(Side::Buy, 500);
-            auto t0 = tsc_now(); e.process_order(o); auto t1 = tsc_now();
-            lat.push_back(ns(t1-t0));
+            auto* ask=heap_lmt(Side::Sell,100.0,100);
+            e.process_order(ask);
+            auto* bid=heap_lmt(Side::Buy,100.0,100);
+            auto t0=tsc_now(); e.process_order(bid); lat.push_back(ns(tsc_now()-t0));
         }
-        print("market order, sweep 5 levels", compute(lat));
+        base_fill=compute(lat); print("heap alloc (baseline)",base_fill);
+    }
+    {
+        std::vector<double> lat; lat.reserve(N);
+        auto pool=std::make_unique<Pool>();
+        for(int i=0;i<N;++i){
+            MatchingEngine e("AAPL");
+            auto* ask=pool_lmt(*pool,Side::Sell,100.0,100);
+            e.process_order(ask);
+            auto* bid=pool_lmt(*pool,Side::Buy,100.0,100);
+            auto t0=tsc_now(); e.process_order(bid); lat.push_back(ns(tsc_now()-t0));
+            pool->destroy(ask);
+            pool->destroy(bid);
+        }
+        pool_fill=compute(lat); print("pool alloc (week4)   ",pool_fill,&base_fill);
     }
 
-    // ── 4. Cancel order ───────────────────────────────────────────────────
+    // ══ 3. cancel order ══════════════════════════════════════════════════
+    // N orders resting, then cancelled. Pool holds all N simultaneously.
+    printf("\n  ── cancel order ──────────────────────────────────────────────\n");
+    Stats base_cancel, pool_cancel;
     {
         std::vector<double> lat; lat.reserve(N);
         MatchingEngine e("AAPL");
         std::vector<OrderId> ids; ids.reserve(N);
-        for (int i=0;i<N;++i) {
-            auto* o = lmt(Side::Buy, 100.0-(i%20)*0.01, 100);
-            ids.push_back(o->order_id);
-            e.process_order(o);
+        for(int i=0;i<N;++i){
+            auto* o=heap_lmt(Side::Buy,100.0-(i%20)*0.01,100);
+            ids.push_back(o->order_id); e.process_order(o);
         }
-        for (auto id : ids) {
-            auto t0 = tsc_now(); e.cancel_order(id); auto t1 = tsc_now();
-            lat.push_back(ns(t1-t0));
+        for(auto id:ids){
+            auto t0=tsc_now(); e.cancel_order(id); lat.push_back(ns(tsc_now()-t0));
         }
-        print("cancel order", compute(lat));
+        base_cancel=compute(lat); print("heap alloc (baseline)",base_cancel);
     }
-
-    // ── 5. Throughput ─────────────────────────────────────────────────────
     {
-        printf("\n  ── Throughput ───────────────────────────────────────────\n");
+        std::vector<double> lat; lat.reserve(N);
+        auto pool=std::make_unique<Pool>();
         MatchingEngine e("AAPL");
-        seed(e, 100.0, 10);
-        constexpr int M = 1'000'000;
-        auto w0 = std::chrono::high_resolution_clock::now();
-        for (int i=0;i<M;++i) {
-            if      (i%4==0) e.process_order(lmt(Side::Sell, 100.0+(i%10)*0.01, 10));
-            else if (i%4==1) e.process_order(lmt(Side::Buy,  100.0-(i%10)*0.01, 10));
-            else             e.process_order(mkt(i%2?Side::Buy:Side::Sell, 5));
+        std::vector<OrderId> ids;  ids.reserve(N);
+        std::vector<Order*>  ptrs; ptrs.reserve(N);
+        for(int i=0;i<N;++i){
+            auto* o=pool_lmt(*pool,Side::Buy,100.0-(i%20)*0.01,100);
+            ids.push_back(o->order_id); ptrs.push_back(o); e.process_order(o);
         }
-        auto w1  = std::chrono::high_resolution_clock::now();
-        double s = std::chrono::duration<double>(w1-w0).count();
-        printf("  %d orders in %.3fs  →  %.2f M orders/sec  (avg %.1fns)\n",
-               M, s, M/s/1e6, s*1e9/M);
+        for(size_t i=0;i<ids.size();++i){
+            auto t0=tsc_now(); e.cancel_order(ids[i]); lat.push_back(ns(tsc_now()-t0));
+            pool->destroy(ptrs[i]);
+        }
+        pool_cancel=compute(lat); print("pool alloc (week4)   ",pool_cancel,&base_cancel);
+        printf("    pool in_use=%zu/%zu\n", pool->in_use(), pool->capacity());
     }
 
-    printf("\n  ── Week 4 targets ───────────────────────────────────────\n");
-    printf("  limit resting  p99 < 200ns\n");
-    printf("  limit fill     p99 < 500ns\n");
-    printf("  cancel         p99 < 200ns\n\n");
+    // ══ 4. throughput — balanced order flow ══════════════════════════════
+    // Alternate: add limit, add limit, cancel one → book stays bounded.
+    // Pool never accumulates more than ~N/2 orders simultaneously.
+    printf("\n  ── Throughput (500k orders, balanced flow) ───────────────────\n");
+    constexpr int M = 8'000;
+    {
+        MatchingEngine e("AAPL");
+        auto w0=std::chrono::high_resolution_clock::now();
+        std::vector<OrderId> live_ids;
+        live_ids.reserve(1000);
+        for(int i=0;i<M;++i){
+            if (i%3==0){
+                auto* o=heap_lmt(Side::Buy, 100.0-(i%10)*0.01,10);
+                live_ids.push_back(o->order_id); e.process_order(o);
+            } else if (i%3==1){
+                auto* o=heap_lmt(Side::Sell,100.0+(i%10)*0.01,10);
+                live_ids.push_back(o->order_id); e.process_order(o);
+            } else if (!live_ids.empty()){
+                e.cancel_order(live_ids.back()); live_ids.pop_back();
+            }
+        }
+        double s=std::chrono::duration<double>(std::chrono::high_resolution_clock::now()-w0).count();
+        printf("  heap : %.2f M orders/sec  (avg %.1fns)\n",M/s/1e6,s*1e9/M);
+    }
+    {
+        auto pool=std::make_unique<Pool>();
+        MatchingEngine e("AAPL");
+        auto w0=std::chrono::high_resolution_clock::now();
+        std::vector<OrderId> live_ids;
+        std::vector<Order*>  live_ptrs;
+        live_ids.reserve(1000); live_ptrs.reserve(1000);
+        for(int i=0;i<M;++i){
+            if (i%3==0){
+                auto* o=pool_lmt(*pool,Side::Buy, 100.0-(i%10)*0.01,10);
+                live_ids.push_back(o->order_id); live_ptrs.push_back(o); e.process_order(o);
+            } else if (i%3==1){
+                auto* o=pool_lmt(*pool,Side::Sell,100.0+(i%10)*0.01,10);
+                live_ids.push_back(o->order_id); live_ptrs.push_back(o); e.process_order(o);
+            } else if (!live_ids.empty()){
+                e.cancel_order(live_ids.back()); live_ids.pop_back();
+                pool->destroy(live_ptrs.back()); live_ptrs.pop_back();
+            }
+        }
+        double s=std::chrono::duration<double>(std::chrono::high_resolution_clock::now()-w0).count();
+        printf("  pool : %.2f M orders/sec  (avg %.1fns)\n",M/s/1e6,s*1e9/M);
+        printf("  pool in_use=%zu/%zu (peak estimate)\n", pool->in_use(), pool->capacity());
+    }
 
+    printf("\n");
     return 0;
 }

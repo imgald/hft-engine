@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/imglad1991/hft/tests/test_matching_engine.cpp" "tests/CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o" "gcc" "tests/CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o.d"
+  "/home/imglad1991/hft/tests/test_object_pool.cpp" "tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o" "gcc" "tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o.d"
   "/home/imglad1991/hft/tests/test_order.cpp" "tests/CMakeFiles/hft_tests.dir/test_order.cpp.o" "gcc" "tests/CMakeFiles/hft_tests.dir/test_order.cpp.o.d"
   "/home/imglad1991/hft/tests/test_order_book.cpp" "tests/CMakeFiles/hft_tests.dir/test_order_book.cpp.o" "gcc" "tests/CMakeFiles/hft_tests.dir/test_order_book.cpp.o.d"
   "/home/imglad1991/hft/tests/test_price_level.cpp" "tests/CMakeFiles/hft_tests.dir/test_price_level.cpp.o" "gcc" "tests/CMakeFiles/hft_tests.dir/test_price_level.cpp.o.d"

@@ -78,6 +78,12 @@
   "output": "tests/CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o"
 },
 {
+  "directory": "/home/imglad1991/hft/build/Release/tests",
+  "command": "/usr/bin/c++  -I/home/imglad1991/hft -isystem /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest/include -isystem /home/imglad1991/hft/build/Release/_deps/googletest-src/googletest -O3 -march=native -DNDEBUG -flto -std=c++20 -Wall -Wextra -Wpedantic -Wno-unused-parameter -o CMakeFiles/hft_tests.dir/test_object_pool.cpp.o -c /home/imglad1991/hft/tests/test_object_pool.cpp",
+  "file": "/home/imglad1991/hft/tests/test_object_pool.cpp",
+  "output": "tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o"
+},
+{
   "directory": "/home/imglad1991/hft/build/Release/bench",
   "command": "/usr/bin/c++  -I/home/imglad1991/hft -O3 -march=native -DNDEBUG -flto -std=c++20 -Wall -Wextra -Wpedantic -Wno-unused-parameter -o CMakeFiles/hft_bench.dir/bench_order_book.cpp.o -c /home/imglad1991/hft/bench/bench_order_book.cpp",
   "file": "/home/imglad1991/hft/bench/bench_order_book.cpp",

@@ -303,12 +303,12 @@ tests/CMakeFiles/hft_tests.dir/all: _deps/googletest-build/googletest/CMakeFiles
 tests/CMakeFiles/hft_tests.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/hft_tests.dir/build.make tests/CMakeFiles/hft_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/hft_tests.dir/build.make tests/CMakeFiles/hft_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/imglad1991/hft/build/Release/CMakeFiles --progress-num=16,17,18,19,20,21 "Built target hft_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/imglad1991/hft/build/Release/CMakeFiles --progress-num=16,17,18,19,20,21,22 "Built target hft_tests"
 .PHONY : tests/CMakeFiles/hft_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/hft_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/imglad1991/hft/build/Release/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/imglad1991/hft/build/Release/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/hft_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/imglad1991/hft/build/Release/CMakeFiles 0
 .PHONY : tests/CMakeFiles/hft_tests.dir/rule

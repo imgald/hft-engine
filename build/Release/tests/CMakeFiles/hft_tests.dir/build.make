@@ -139,13 +139,28 @@ tests/CMakeFiles/hft_tests.dir/test_matching_engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hft_tests.dir/test_matching_engine.cpp.s"
 	cd /home/imglad1991/hft/build/Release/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/imglad1991/hft/tests/test_matching_engine.cpp -o CMakeFiles/hft_tests.dir/test_matching_engine.cpp.s
 
+tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o: tests/CMakeFiles/hft_tests.dir/flags.make
+tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o: /home/imglad1991/hft/tests/test_object_pool.cpp
+tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o: tests/CMakeFiles/hft_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/imglad1991/hft/build/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o"
+	cd /home/imglad1991/hft/build/Release/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o -MF CMakeFiles/hft_tests.dir/test_object_pool.cpp.o.d -o CMakeFiles/hft_tests.dir/test_object_pool.cpp.o -c /home/imglad1991/hft/tests/test_object_pool.cpp
+
+tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/hft_tests.dir/test_object_pool.cpp.i"
+	cd /home/imglad1991/hft/build/Release/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/imglad1991/hft/tests/test_object_pool.cpp > CMakeFiles/hft_tests.dir/test_object_pool.cpp.i
+
+tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hft_tests.dir/test_object_pool.cpp.s"
+	cd /home/imglad1991/hft/build/Release/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/imglad1991/hft/tests/test_object_pool.cpp -o CMakeFiles/hft_tests.dir/test_object_pool.cpp.s
+
 # Object files for target hft_tests
 hft_tests_OBJECTS = \
 "CMakeFiles/hft_tests.dir/test_types.cpp.o" \
 "CMakeFiles/hft_tests.dir/test_order.cpp.o" \
 "CMakeFiles/hft_tests.dir/test_price_level.cpp.o" \
 "CMakeFiles/hft_tests.dir/test_order_book.cpp.o" \
-"CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o"
+"CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o" \
+"CMakeFiles/hft_tests.dir/test_object_pool.cpp.o"
 
 # External object files for target hft_tests
 hft_tests_EXTERNAL_OBJECTS =
@@ -155,12 +170,13 @@ bin/hft_tests: tests/CMakeFiles/hft_tests.dir/test_order.cpp.o
 bin/hft_tests: tests/CMakeFiles/hft_tests.dir/test_price_level.cpp.o
 bin/hft_tests: tests/CMakeFiles/hft_tests.dir/test_order_book.cpp.o
 bin/hft_tests: tests/CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o
+bin/hft_tests: tests/CMakeFiles/hft_tests.dir/test_object_pool.cpp.o
 bin/hft_tests: tests/CMakeFiles/hft_tests.dir/build.make
 bin/hft_tests: lib/libengine.a
 bin/hft_tests: lib/libgtest_main.a
 bin/hft_tests: lib/libgtest.a
 bin/hft_tests: tests/CMakeFiles/hft_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/imglad1991/hft/build/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../bin/hft_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/imglad1991/hft/build/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/hft_tests"
 	cd /home/imglad1991/hft/build/Release/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hft_tests.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/imglad1991/hft/build/Release/tests && /usr/bin/cmake -D TEST_TARGET=hft_tests -D TEST_EXECUTABLE=/home/imglad1991/hft/build/Release/bin/hft_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/imglad1991/hft/build/Release/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=hft_tests_TESTS -D CTEST_FILE=/home/imglad1991/hft/build/Release/tests/hft_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.28/Modules/GoogleTestAddTests.cmake
 

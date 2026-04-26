@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "../bin/hft_tests.pdb"
   "CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o"
   "CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o.d"
+  "CMakeFiles/hft_tests.dir/test_object_pool.cpp.o"
+  "CMakeFiles/hft_tests.dir/test_object_pool.cpp.o.d"
   "CMakeFiles/hft_tests.dir/test_order.cpp.o"
   "CMakeFiles/hft_tests.dir/test_order.cpp.o.d"
   "CMakeFiles/hft_tests.dir/test_order_book.cpp.o"
