@@ -5,10 +5,12 @@ add_executable(hft_tests
   test_order_book.cpp
   test_matching_engine.cpp
   test_object_pool.cpp
+  test_fix_parser.cpp
 )
 
 target_link_libraries(hft_tests
   PRIVATE
+    network
     engine
     GTest::gtest_main
 )
