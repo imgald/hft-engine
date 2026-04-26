@@ -1,0 +1,5 @@
+if(EXISTS "/home/imglad1991/hft/build/Release/tests/hft_tests[1]_tests.cmake")
+  include("/home/imglad1991/hft/build/Release/tests/hft_tests[1]_tests.cmake")
+else()
+  add_test(hft_tests_NOT_BUILT hft_tests_NOT_BUILT)
+endif()

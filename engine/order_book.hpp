@@ -113,6 +113,14 @@ public:
     // Cancel a resting order.  Returns true if found and removed.
     bool cancel_order(OrderId id);
 
+    // ── Matching helper ───────────────────────────────────────
+    //
+    // Called by MatchingEngine during matching loop.
+    // Fills up to `qty` from the front order at `price` on `side`.
+    // Returns {filled_qty, passive_order_id}.
+    //
+    std::pair<Quantity, OrderId> fill_front(Price price, Side side, Quantity qty);
+
     // ── Statistics ────────────────────────────────────────────
 
     uint64_t total_volume()    const noexcept { return total_volume_; }

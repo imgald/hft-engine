@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -march=native -DNDEBUG -flto CMakeFiles/hft_tests.dir/test_types.cpp.o CMakeFiles/hft_tests.dir/test_order.cpp.o CMakeFiles/hft_tests.dir/test_price_level.cpp.o CMakeFiles/hft_tests.dir/test_order_book.cpp.o CMakeFiles/hft_tests.dir/test_matching_engine.cpp.o -o ../bin/hft_tests  ../lib/libengine.a ../lib/libgtest_main.a ../lib/libgtest.a 

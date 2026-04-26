@@ -33,6 +33,7 @@ add_library(engine STATIC
   engine/order.cpp
   engine/price_level.cpp
   engine/order_book.cpp
+  engine/matching_engine.cpp
 )
 target_include_directories(engine PUBLIC ${CMAKE_SOURCE_DIR})
 
