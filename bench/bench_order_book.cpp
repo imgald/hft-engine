@@ -1,179 +1,184 @@
-#include "engine/order_book.hpp"
+#include "engine/matching_engine.hpp"
 #include "engine/order_id_generator.hpp"
 
+#include <algorithm>
 #include <chrono>
 #include <cstdio>
-#include <vector>
-#include <algorithm>
 #include <numeric>
-#include <cstring>
+#include <vector>
 
-// ─── rdtsc ────────────────────────────────────────────────────────────────────
+// ─── rdtscp ──────────────────────────────────────────────────────────────────
 //
-// __rdtsc() reads the CPU's Time Stamp Counter — a 64-bit register incremented
-// every clock cycle.  It's the gold standard for nanosecond-level microbenchmarks
-// in HFT because:
-//   1. It has ~1ns resolution (vs chrono's ~20–100ns overhead on some systems).
-//   2. It doesn't involve a syscall (clock_gettime does on some kernels).
-//
-// Caveats:
-//   - Not serializing: the CPU can reorder instructions across the rdtsc.
-//     Use __rdtscp() or insert a memory fence if you need strict ordering.
-//   - Not portable: x86 only.  Fine for HFT (always x86).
-//   - Requires a calibration step to convert cycles → nanoseconds.
+// rdtscp (serializing) vs rdtsc (non-serializing):
+//   rdtsc  — CPU can reorder instructions across it → measurement noise
+//   rdtscp — waits for all prior instructions to retire before reading
+//             the counter → more accurate for microbenchmarks
 //
 #if defined(__x86_64__) || defined(_M_X64)
   #include <x86intrin.h>
-  #define HFT_RDTSC() __rdtsc()
-  #define HFT_HAS_RDTSC 1
+  static inline uint64_t tsc_now() {
+      unsigned aux;
+      return __rdtscp(&aux);
+  }
+  #define HFT_HAS_TSC 1
 #else
-  // Fallback for non-x86 (ARM, etc.)
-  static inline uint64_t hft_rdtsc_fallback() {
+  static inline uint64_t tsc_now() {
       return static_cast<uint64_t>(
           std::chrono::high_resolution_clock::now().time_since_epoch().count());
   }
-  #define HFT_RDTSC() hft_rdtsc_fallback()
-  #define HFT_HAS_RDTSC 0
+  #define HFT_HAS_TSC 0
 #endif
 
-// ─── Calibrate cycles/ns ─────────────────────────────────────────────────────
-static double cycles_per_ns() {
-    auto t0 = std::chrono::high_resolution_clock::now();
-    uint64_t c0 = HFT_RDTSC();
-    // busy-wait 100ms
-    while (std::chrono::high_resolution_clock::now() - t0 <
-           std::chrono::milliseconds(100)) {}
-    uint64_t c1 = HFT_RDTSC();
-    auto t1 = std::chrono::high_resolution_clock::now();
-    double elapsed_ns = std::chrono::duration<double, std::nano>(t1 - t0).count();
-    return static_cast<double>(c1 - c0) / elapsed_ns;
+// ─── Calibration ─────────────────────────────────────────────────────────────
+static double calibrate_cycles_per_ns() {
+    using Clock = std::chrono::high_resolution_clock;
+    auto     w0 = Clock::now();
+    uint64_t t0 = tsc_now();
+    while (Clock::now() - w0 < std::chrono::milliseconds(200)) {}
+    uint64_t t1 = tsc_now();
+    auto     w1 = Clock::now();
+    double elapsed_ns = std::chrono::duration<double, std::nano>(w1 - w0).count();
+    return static_cast<double>(t1 - t0) / elapsed_ns;
 }
 
-// ─── Statistics helpers ───────────────────────────────────────────────────────
-static double percentile(std::vector<double>& sorted, double pct) {
-    size_t idx = static_cast<size_t>(sorted.size() * pct / 100.0);
-    idx = std::min(idx, sorted.size() - 1);
-    return sorted[idx];
+// ─── Stats ───────────────────────────────────────────────────────────────────
+struct Stats { double min, p50, p90, p99, p999, max, avg; };
+
+static Stats compute(std::vector<double>& v) {
+    std::sort(v.begin(), v.end());
+    double sum = 0; for (auto x : v) sum += x;
+    size_t n = v.size();
+    auto p = [&](double pct) { return v[std::min((size_t)(n*pct/100.0), n-1)]; };
+    return { v.front(), p(50), p(90), p(99), p(99.9), v.back(), sum/n };
 }
 
-static void print_stats(const char* label, std::vector<double> samples) {
-    std::sort(samples.begin(), samples.end());
-    double sum = std::accumulate(samples.begin(), samples.end(), 0.0);
-    printf("  %-30s  avg=%6.1fns  p50=%6.1fns  p99=%6.1fns  min=%5.1fns  max=%6.1fns\n",
-           label,
-           sum / samples.size(),
-           percentile(samples, 50),
-           percentile(samples, 99),
-           samples.front(),
-           samples.back());
+static void print(const char* label, Stats s) {
+    printf("  %-38s  avg=%6.1f  p50=%6.1f  p99=%6.1f  p99.9=%7.1f  [ns]\n",
+           label, s.avg, s.p50, s.p99, s.p999);
 }
 
-// ─── Benchmarks ───────────────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+using namespace hft;
+static OrderIdGenerator g_gen;
 
+static Order* lmt(Side s, double px, Quantity q) {
+    return new Order(Order::make_limit(g_gen.next(), s, to_price(px), q));
+}
+static Order* mkt(Side s, Quantity q) {
+    return new Order(Order::make_market(g_gen.next(), s, q));
+}
+static void seed(MatchingEngine& e, double mid, int levels) {
+    for (int i = 1; i <= levels; ++i) {
+        e.process_order(lmt(Side::Buy,  mid - i*0.01, 1000));
+        e.process_order(lmt(Side::Sell, mid + i*0.01, 1000));
+    }
+}
+
+// ─── Main ────────────────────────────────────────────────────────────────────
 int main() {
-    printf("\n");
-    printf("════════════════════════════════════════════════════════\n");
-    printf("  HFT Engine — Baseline Latency Benchmark (Week 1)\n");
-    printf("════════════════════════════════════════════════════════\n");
-    printf("  rdtsc available : %s\n", HFT_HAS_RDTSC ? "yes (x86)" : "no (fallback)");
+    printf("\n══════════════════════════════════════════════════════════════\n");
+    printf("  HFT Engine — Latency Benchmark  (Week 3 baseline)\n");
+    printf("══════════════════════════════════════════════════════════════\n");
+    printf("  TSC : %s\n", HFT_HAS_TSC ? "rdtscp (serializing)" : "chrono fallback");
 
-    const double cpns = cycles_per_ns();
-    printf("  CPU speed        : %.2f GHz\n\n", cpns);
+    const double cpns = calibrate_cycles_per_ns();
+    printf("  CPU : %.3f GHz\n\n", cpns);
 
-    using namespace hft;
-    OrderIdGenerator gen;
-    constexpr int WARMUP  = 10'000;
-    constexpr int SAMPLES = 100'000;
+    constexpr int W = 20'000;      // warmup
+    constexpr int N = 200'000;     // samples
 
-    // ── Bench 1: add_order (resting limit, no match) ──────────────────────
+    auto ns = [&](uint64_t cycles) { return (double)cycles / cpns; };
+
+    // ── 1. Limit order, no match ──────────────────────────────────────────
     {
-        std::vector<double> latencies;
-        latencies.reserve(SAMPLES);
+        std::vector<double> lat; lat.reserve(N);
+        { MatchingEngine e("W");
+          for (int i=0;i<W;++i) e.process_order(lmt(i%2?Side::Buy:Side::Sell,100.0-(i%10)*0.01,100)); }
 
-        // Warmup
-        OrderBook wb("WB");
-        for (int i = 0; i < WARMUP; ++i) {
-            auto* o = new Order(Order::make_limit(
-                gen.next(), i % 2 == 0 ? Side::Buy : Side::Sell,
-                to_price(100.0 - (i % 10) * 0.01), 100));
-            wb.add_order(o);
-        }
-
-        // Measure
-        OrderBook book("AAPL");
-        std::vector<Order*> orders;
-        orders.reserve(SAMPLES);
-        for (int i = 0; i < SAMPLES; ++i) {
-            orders.push_back(new Order(Order::make_limit(
-                gen.next(), i % 2 == 0 ? Side::Buy : Side::Sell,
-                to_price(100.0 - (i % 20) * 0.01), 100)));
-        }
+        MatchingEngine e("AAPL");
+        std::vector<Order*> orders; orders.reserve(N);
+        for (int i=0;i<N;++i)
+            orders.push_back(lmt(i%2?Side::Buy:Side::Sell, 100.0-(i%20)*0.01, 100));
 
         for (auto* o : orders) {
-            uint64_t t0 = HFT_RDTSC();
-            book.add_order(o);
-            uint64_t t1 = HFT_RDTSC();
-            latencies.push_back(static_cast<double>(t1 - t0) / cpns);
+            auto t0 = tsc_now(); e.process_order(o); auto t1 = tsc_now();
+            lat.push_back(ns(t1-t0));
         }
-        print_stats("add_order (limit, no match)", latencies);
+        print("limit order, no match (resting)", compute(lat));
     }
 
-    // ── Bench 2: cancel_order ─────────────────────────────────────────────
+    // ── 2. Limit order, full fill ─────────────────────────────────────────
     {
-        std::vector<double> latencies;
-        latencies.reserve(SAMPLES);
+        std::vector<double> lat; lat.reserve(N);
+        { MatchingEngine e("W");
+          for (int i=0;i<W;++i){ e.process_order(lmt(Side::Sell,100.0,100));
+                                  e.process_order(lmt(Side::Buy, 100.0,100)); } }
 
-        OrderBook book("AAPL");
-        std::vector<OrderId> ids;
-        ids.reserve(SAMPLES);
-
-        for (int i = 0; i < SAMPLES; ++i) {
-            OrderId id = gen.next();
-            ids.push_back(id);
-            book.add_order(new Order(Order::make_limit(
-                id, Side::Buy, to_price(100.0 - (i % 10) * 0.01), 100)));
+        for (int i=0;i<N;++i) {
+            MatchingEngine e("AAPL");
+            e.process_order(lmt(Side::Sell, 100.0, 100));
+            Order* buy = lmt(Side::Buy, 100.0, 100);
+            auto t0 = tsc_now(); e.process_order(buy); auto t1 = tsc_now();
+            lat.push_back(ns(t1-t0));
         }
-
-        for (OrderId id : ids) {
-            uint64_t t0 = HFT_RDTSC();
-            book.cancel_order(id);
-            uint64_t t1 = HFT_RDTSC();
-            latencies.push_back(static_cast<double>(t1 - t0) / cpns);
-        }
-        print_stats("cancel_order", latencies);
+        print("limit order, full fill (1 level)", compute(lat));
     }
 
-    // ── Bench 3: best_bid() / best_ask() lookup ───────────────────────────
+    // ── 3. Market order, sweep 5 levels ──────────────────────────────────
     {
-        std::vector<double> latencies;
-        latencies.reserve(SAMPLES);
+        std::vector<double> lat; lat.reserve(N);
+        { MatchingEngine e("W");
+          for (int i=0;i<W;++i){ seed(e,100.0,5); e.process_order(mkt(Side::Buy,500)); } }
 
-        OrderBook book("AAPL");
-        for (int i = 0; i < 20; ++i) {
-            book.add_order(new Order(Order::make_limit(
-                gen.next(), Side::Buy,  to_price(100.0 - i * 0.01), 100)));
-            book.add_order(new Order(Order::make_limit(
-                gen.next(), Side::Sell, to_price(100.1 + i * 0.01), 100)));
+        for (int i=0;i<N;++i) {
+            MatchingEngine e("AAPL");
+            seed(e, 100.0, 5);
+            Order* o = mkt(Side::Buy, 500);
+            auto t0 = tsc_now(); e.process_order(o); auto t1 = tsc_now();
+            lat.push_back(ns(t1-t0));
         }
-
-        volatile Price sink = 0;   // prevent dead-code elimination
-        for (int i = 0; i < SAMPLES; ++i) {
-            uint64_t t0 = HFT_RDTSC();
-            auto bb = book.best_bid();
-            auto ba = book.best_ask();
-            uint64_t t1 = HFT_RDTSC();
-            if (bb) sink += *bb;
-            if (ba) sink += *ba;
-            latencies.push_back(static_cast<double>(t1 - t0) / cpns);
-        }
-        print_stats("best_bid() + best_ask()", latencies);
+        print("market order, sweep 5 levels", compute(lat));
     }
 
-    printf("\n");
-    printf("  NOTE: These are in-process latencies without network/OS overhead.\n");
-    printf("  Target for matching engine (Week 3): P99 < 500ns.\n");
-    printf("  Week 4 optimizations (pool alloc, cache alignment) will push\n");
-    printf("  this toward P99 < 100ns.\n\n");
+    // ── 4. Cancel order ───────────────────────────────────────────────────
+    {
+        std::vector<double> lat; lat.reserve(N);
+        MatchingEngine e("AAPL");
+        std::vector<OrderId> ids; ids.reserve(N);
+        for (int i=0;i<N;++i) {
+            auto* o = lmt(Side::Buy, 100.0-(i%20)*0.01, 100);
+            ids.push_back(o->order_id);
+            e.process_order(o);
+        }
+        for (auto id : ids) {
+            auto t0 = tsc_now(); e.cancel_order(id); auto t1 = tsc_now();
+            lat.push_back(ns(t1-t0));
+        }
+        print("cancel order", compute(lat));
+    }
+
+    // ── 5. Throughput ─────────────────────────────────────────────────────
+    {
+        printf("\n  ── Throughput ───────────────────────────────────────────\n");
+        MatchingEngine e("AAPL");
+        seed(e, 100.0, 10);
+        constexpr int M = 1'000'000;
+        auto w0 = std::chrono::high_resolution_clock::now();
+        for (int i=0;i<M;++i) {
+            if      (i%4==0) e.process_order(lmt(Side::Sell, 100.0+(i%10)*0.01, 10));
+            else if (i%4==1) e.process_order(lmt(Side::Buy,  100.0-(i%10)*0.01, 10));
+            else             e.process_order(mkt(i%2?Side::Buy:Side::Sell, 5));
+        }
+        auto w1  = std::chrono::high_resolution_clock::now();
+        double s = std::chrono::duration<double>(w1-w0).count();
+        printf("  %d orders in %.3fs  →  %.2f M orders/sec  (avg %.1fns)\n",
+               M, s, M/s/1e6, s*1e9/M);
+    }
+
+    printf("\n  ── Week 4 targets ───────────────────────────────────────\n");
+    printf("  limit resting  p99 < 200ns\n");
+    printf("  limit fill     p99 < 500ns\n");
+    printf("  cancel         p99 < 200ns\n\n");
 
     return 0;
 }
