@@ -67,10 +67,10 @@ void MatchingEngine::match(Order* aggressor, MatchResult& result) {
         }
 
         // No opposing orders — stop matching.
-        if (!best_opposing.has_value()) break;
+        if (!best_opposing.has_value()) [[unlikely]] break;
 
         // Price doesn't cross — stop matching.
-        if (!prices_cross(aggressor, *best_opposing)) break;
+        if (!prices_cross(aggressor, *best_opposing)) [[unlikely]] break;
 
         // ── Step 2: get the front order at that price ─────────
         // We access PriceLevels through the book's internal maps.
