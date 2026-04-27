@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ build-essential
+
+      - name: Configure (Release)
+        run: cmake -S . -B build/Release -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build/Release --parallel $(nproc)
+
+      - name: Run unit tests
+        run: cd build/Release && ctest --output-on-failure
+
+      - name: Benchmark smoke test
+        run: |
+          # Just verify the benchmark binary runs without crashing.
+          # We don't assert on latency numbers (they vary by runner).
+          timeout 60 ./build/Release/bin/hft_bench && echo "Benchmark OK"
