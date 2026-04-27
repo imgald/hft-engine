@@ -146,8 +146,12 @@ ParsedMessage FIXParser::parse(std::string_view raw) {
         if (ec == std::errc{}) {
             msg.price = raw_price;
         } else {
-            // Fall back: parse as double and convert
-            msg.price = to_price(std::stod(s->second));
+            try {
+                msg.price = to_price(std::stod(s->second));
+            } catch (...) {
+                msg.error = "invalid price: " + s->second;
+                return msg;
+            }
         }
     } else if (msg.ord_type == OrderType::Limit) {
         msg.error = "missing tag 44 (Price) for limit order";

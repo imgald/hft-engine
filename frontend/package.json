@@ -1,0 +1,19 @@
+{
+  "name": "hft-frontend",
+  "version": "1.0.0",
+  "description": "HFT Matching Engine real-time visualization",
+  "scripts": {
+    "server": "node server.js",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.0"
+  }
+}
