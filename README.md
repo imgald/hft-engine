@@ -1,5 +1,6 @@
 # Low Latency Order Matching Engine
 
+![CI](https://github.com/imgald/hft-engine/actions/workflows/ci.yml/badge.svg)
 A high-performance order matching engine written in C++20, targeting sub-microsecond
 order processing latency. Built as a portfolio project for electronic trading and
 HFT firm interviews.
